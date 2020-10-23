@@ -1,0 +1,12 @@
+server:
+  port: 9999   #http://localhost:8888
+logging:
+  level:
+    org.springframework: debug
+    com.yc: debug
+
+eureka:
+  client:
+    register-with-eureka: false    #消费端不须要到eureka中注册
+    service-url:
+      defaultZone: http://admin:a@eureka1:7001/eureka,http://admin:a@eureka2:7002/eureka,http://admin:a@eureka3:7003/eureka

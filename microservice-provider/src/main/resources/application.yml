@@ -1,0 +1,46 @@
+server:
+  port: 8888     #http://localhost:8888
+
+spring:
+  application:
+    name: microservice-provider
+  # security:
+  #  user:
+  #    name: admin
+  #    password: a
+  #    roles:
+  #      - USER
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 12345678
+    url: jdbc:mysql://39.97.170.86:3306/testmis81?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Hongkong
+  cloude:
+    zookeeper:
+      connect-string: localhost:2181
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true    #将_转为驼峰命名
+mapper:
+  identity: MYSQL   # 标识列用mysql  配置主键自动增长
+logging:
+  level:
+    com.yc.springcloud81.misprovider.dao: debug    #  None, fatal,error,warning,info,debug,all
+
+eureka:
+  client: # 客户端进行Eureka注册的配置
+    service-url:
+      #defaultZone: http://localhost:7001/eureka
+      defaultZone: http://admin:a@eureka1:7001/eureka,http://admin:a@eureka2:7002/eureka,http://admin:a@eureka3:7003/eureka
+  instance:
+    instance-id: microservice-provider-product_1   #实例名
+    lease-expiration-duration-in-seconds: 90  #如果现在超过了5s的时间间隔( default: 90 s )
+    lease-renewal-interval-in-seconds: 30   #设置心跳的时间间隔( default:30s )
+
+
+#监控配置
+info:
+  app.name: MICROSERVICE-PROVIDER
+  company.name: yc
+  build.artifactId: $project.artifactId$
+  build.modelVersion: $project.modelVersion$
